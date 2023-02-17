@@ -9,11 +9,11 @@ pub fn keys() -> (EncryptionKey, DecryptionKey) {
 
     let serial_enc_key: String =
         fs::read_to_string("./data/enc_key.key").expect("Unable to read file");
-    let serial_dec_key = fs::read_to_string("./data/dec_key.key").expect("Unable to read file");
+    let serial_dec_key: String = fs::read_to_string("./data/dec_key.key").expect("Unable to read file");
 
     if serial_enc_key.len() == 0 || serial_dec_key.len() == 0 {
-        let serial_enc_key = serde_json::to_string(&enc_key).unwrap();
-        let serial_dec_key = serde_json::to_string(&dec_key).unwrap();
+        let serial_enc_key: String = serde_json::to_string(&enc_key).unwrap();
+        let serial_dec_key: String = serde_json::to_string(&dec_key).unwrap();
 
         fs::write("./data/enc_key.key", serial_enc_key).expect("Unable to write file");
         fs::write("./data/dec_key.key", serial_dec_key).expect("Unable to write file");
