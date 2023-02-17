@@ -1,7 +1,10 @@
+extern crate paillier;
+
 mod key_manager;
 mod paillier_crypto;
 
-use key_manager::keys;
+#[allow(unused_imports)]
+use paillier::*;
 use paillier_crypto::paillier_enc;
 
 // cargo +nightly run
@@ -9,13 +12,17 @@ fn main() {
     let (enc_key, dec_key) = key_manager::keys();
     let cipher = paillier_enc(10, 15, 2, enc_key);
 
-    println!("Decrypted: {}", paillier_crypto::paillier_dec(cipher, dec_key));
+    println!(
+        "Decrypted: {}",
+        paillier_crypto::paillier_dec(cipher, dec_key)
+    );
 }
 
 #[cfg(test)]
 mod tests {
 
     use super::*;
+    use paillier_crypto::paillier_dec;
 
     fn print_type_of<T>(_: &T) -> &'static str {
         return std::any::type_name::<T>();
