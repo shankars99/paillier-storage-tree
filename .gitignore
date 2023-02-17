@@ -3,3 +3,5 @@
 # Added by cargo
 
 /target
+data/dec_key.key
+data/enc_key.key
